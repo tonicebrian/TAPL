@@ -1,0 +1,18 @@
+Name:               TAPL
+Version:            0.1
+Description:        Code examples from the book "Types and Programming Languages" implemented in Haskell
+License:            GPL-3
+License-file:       LICENSE
+Author:             Toni Cebrián
+Maintainer:         ancechu@gmail.com
+Build-Type:         Simple
+Cabal-Version:      >=1.8
+executable tapl
+  main-is:          Main.hs
+  ghc-options:      -threaded -rtsopts -O2
+  ghc-prof-options: -prof -caf-all -auto-all
+  Build-Depends:    base >= 4,
+                    containers >= 0.4
+  hs-source-dirs:   src
+
+
