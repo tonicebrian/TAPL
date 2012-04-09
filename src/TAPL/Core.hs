@@ -1,9 +1,6 @@
 module TAPL.Core where
 
--- TODO
-type Info = Int
-dummyInfo = 0 :: Info
--- End TODO
+import TAPL.Support
 
 -- Type for representing terms
 data Term = TmTrue Info
@@ -13,6 +10,7 @@ data Term = TmTrue Info
           | TmSucc Info Term
           | TmPred Info Term
           | TmIsZero Info Term
+          deriving Show
             
 isNumericalVal :: Term -> Bool
 isNumericalVal (TmZero _)    = True
@@ -46,9 +44,11 @@ eval1 (TmIsZero _ (TmSucc _ nv1))
        | otherwise = error "No rule applies" -- TODO: Exceptions
 eval1 (TmIsZero fi t1) = let t1' = eval1 t1
                          in TmIsZero fi t1'
-eval1 _ = error "No rule applies"
+-- eval1 _ = error "No rule applies"
 
 -- The evaluation function
 eval :: Term -> Bool
-eval t = let t' = eval1 t
-         in eval t'
+eval (TmTrue _)  = True
+eval (TmFalse _) = False
+eval t           = let t' = eval1 t
+                   in eval t'
